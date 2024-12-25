@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: second-app
+    #tier: backend pod 전체가 service로 관리되므로 생략가능
+  ports:
+    - protocol: 'TCP'
+      port: 80 # 외부로 노출하고자 하는 port
+      targetPort: 8080 # 컨테이너 내부의 port. app.js가 수신대기중
+    #- protocol: 'TCP'
+      #port: 443
+      #targetPort: 443
+  type: LoadBalancer # ClusterIP 고정값 , NodePort
+  

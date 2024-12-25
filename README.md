@@ -19,7 +19,9 @@ docker tag <이미지이름> <docker사용자명>/<이미지이름>
 docker push <docker사용자명>/<이미지이름>
 ```
 
-3. kubectl로 deployment 만들기 및 확인
+## 명령적 접근방식
+
+1. kubectl로 deployment 만들기 및 확인
 
 ```
 kubectl create deployment <deployment이름> --image=<docker사용자명>/<이미지이름>

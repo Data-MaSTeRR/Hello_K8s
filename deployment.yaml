@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  selector: # Deployment가 감시해야할 pod레이블의 키-값 쌍을 정의
+    matchLabels:
+      app: second-app
+      tier: backend # tag느낌
+  replicas: 1 # pod을 scaling 개수
+  template:
+    metadata:
+      labels:
+        app: second-app
+        tier: backend # tag느낌
+    spec:
+      containers: # -를 통해 pod 내 컨테이너를 구분
+      - name: second-node
+        image: datamasterr/k8s-first-app
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        #ports:
+        #- containerPort: <Port>
+      #- name: ...
+      #  image: ...

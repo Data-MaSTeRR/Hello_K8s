@@ -4,9 +4,11 @@ metadata:
   name: second-app-deployment
 spec:
   selector: # Deployment가 감시해야할 pod레이블의 키-값 쌍을 정의
-    matchLabels:
-      app: second-app
-      tier: backend # tag느낌
+    # matchLabels:
+    #  app: second-app
+    #  tier: backend # tag느낌
+    matchExpressions:
+      - {key: app, operator: In, values: [second-app]} 
   replicas: 1 # pod을 scaling 개수
   template:
     metadata:
@@ -21,7 +23,7 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        #ports:
+        # ports:
         #- containerPort: <Port>
-      #- name: ...
+      # - name: ...
       #  image: ...

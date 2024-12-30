@@ -26,5 +26,5 @@ spec:
         - name: story-volume
           hostPath:
             path: /data # pod의 볼륨이 워커노드에 있음 => pod가 달라도 상관x
-            type: DirectoryOrCreate
+            type: DirectoryOrCreate # 아무것도 없으면 빈 디렉터리 생성
     

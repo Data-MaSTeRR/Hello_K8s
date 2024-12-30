@@ -24,7 +24,5 @@ spec:
             name: story-volume
       volumes:
         - name: story-volume
-          hostPath:
-            path: /data # pod의 볼륨이 워커노드에 있음 => pod가 달라도 상관x
-            type: DirectoryOrCreate # 아무것도 없으면 빈 디렉터리 생성
-    
+          persistentVolumeClaim: # 영구볼륨과 연결고리
+            claimName: host-pvc

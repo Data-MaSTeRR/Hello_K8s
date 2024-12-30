@@ -1,0 +1,13 @@
+### 단일 노드 환경 => hostPath 유형의 영구볼륨 Claim ###
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: host-pvc
+spec:
+  volumeName: host-pv
+  resources:
+    requests:
+      storage: 500mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce

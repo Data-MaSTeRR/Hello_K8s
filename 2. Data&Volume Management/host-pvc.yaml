@@ -9,5 +9,6 @@ spec:
     requests:
       storage: 500mi
   volumeMode: Filesystem
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce

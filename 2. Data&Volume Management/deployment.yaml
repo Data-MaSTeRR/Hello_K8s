@@ -24,5 +24,7 @@ spec:
             name: story-volume
       volumes:
         - name: story-volume
-          emptyDir: {}
+          hostPath:
+            path: /data # pod의 볼륨이 워커노드에 있음 => pod가 달라도 상관x
+            type: DirectoryOrCreate
     

@@ -14,8 +14,15 @@ spec:
     spec:
       containers:
       - name: story
-        image: datamasterr/k8s-data-demo
+        image: datamasterr/k8s-data-demo:1
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        volumeMounts:
+          - mountPath: /app/story
+            name: story-volume
+      volumes:
+        - name: story-volume
+          emptyDir: {}
+    

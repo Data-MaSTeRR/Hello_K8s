@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
       - name: story
-        image: datamasterr/k8s-data-demo:1
+        image: datamasterr/k8s-data-demo:2
+        env: # app.js에서 환경변수를 사용해서, .yaml에서만 유지보수 용이
+        - name: STORY_FOLDER
+          value: 'story'
         resources:
           limits:
             memory: "128Mi"

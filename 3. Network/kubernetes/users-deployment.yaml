@@ -15,9 +15,8 @@ spec:
       containers:
       - name: users
         image: datamasterr/k8s-demo-users
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        #ports:
-        #- containerPort: <Port>
+        env:
+          - name: AUTH_ADDRESS # users-app.js의 환경변수
+            value: localhost # pod 내 컨테이너간 통신
+      - name: auth
+        image: datamasterr/k8s-demo-auth

@@ -8,9 +8,9 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = useCallback(function () {
-    fetch('http://192.168.99.100:32140/tasks', {
+    fetch('http://127.0.0.1:64942/tasks', {
       headers: {
-        'Authorization': 'Bearer abc'
+        'Authorization': 'Bearer abc' // http요청에 토큰을 넣어주는 방법
       }
     })
       .then(function (response) {
@@ -29,7 +29,7 @@ function App() {
   );
 
   function addTaskHandler(task) {
-    fetch('http://192.168.99.100:32140/tasks', {
+    fetch('http://127.0.0.1:64942/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

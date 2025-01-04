@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasks
+  template:
+    metadata:
+      labels:
+        app: tasks
+    spec:
+      containers:
+      - name: tasks
+        image: datamasterr/k8s-demo-tasks:v2
+        env:
+          - name: AUTH_ADDRESS # users-app.js의 환경변수
+            # pod 내 컨테이너 간 통신 #
+            #value: localhost
+
+            # pod끼리 통신 #
+            #value: "10.107.79.251" # auth-service의 ClusterIP / ClusterIP는 서비스 내부에서만 사용 가능 OR
+            value: "auth-service.default" # 서비스 이름을 이용하여 통신 / default는 namespace / docker-compose와 유사
+          - name: TASKS_FOLDER
+            value: "tasks"
+
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi" 
+            cpu: "500m"

@@ -14,4 +14,5 @@ services:
       - "8000:8000"
     environment:
       TASKS_FOLDER: tasks
+      AUTH_ADDRESS: auth # 서비스 이름을 이용하여 통신
     

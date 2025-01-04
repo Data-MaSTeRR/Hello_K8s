@@ -27,7 +27,15 @@ spec:
     spec:
       containers:
         - name: auth-api
-          image: academind/kub-dep-auth:latest
+          image: datamasterr/kub-dep-auth
           env:
             - name: TOKEN_KEY
               value: 'shouldbeverysecure'
+          
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+            requests:
+              memory: '64Mi'
+              cpu: '250m'

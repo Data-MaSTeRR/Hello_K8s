@@ -8,7 +8,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = useCallback(function () {
-    fetch('http://127.0.0.1:64942/tasks', {
+    fetch('/api/tasks', { // nginx를 통해 리버스 프록시를 설정하면 => url을 /api로 설정
       headers: {
         'Authorization': 'Bearer abc' // http요청에 토큰을 넣어주는 방법
       }
@@ -29,7 +29,7 @@ function App() {
   );
 
   function addTaskHandler(task) {
-    fetch('http://127.0.0.1:64942/tasks', {
+    fetch('/api/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

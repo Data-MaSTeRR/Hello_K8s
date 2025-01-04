@@ -5,7 +5,7 @@ services:
   users:
     build: ./users-api
     environment:
-      AUTH_ADDRESS: auth
+      AUTH_ADDRESS: auth # 서비스 이름을 이용하여 통신
     ports: 
       - "8080:8080"
   tasks:

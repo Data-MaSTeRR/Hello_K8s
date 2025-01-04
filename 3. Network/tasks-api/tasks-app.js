@@ -11,6 +11,14 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// 프론트엔드와 통신하기 위한 CORS 헤더 설정
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  next();
+})
+
 const extractAndVerifyToken = async (headers) => {
   if (!headers.authorization) {
     throw new Error('No token provided.');

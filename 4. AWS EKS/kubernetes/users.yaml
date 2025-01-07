@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: users-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: users
@@ -33,12 +33,10 @@ spec:
               value: 'mongodb+srv://hw:<db_password>@hello-eks.pagsh.mongodb.net/?retryWrites=true&w=majority&appName=Hello-EKS'
             - name: AUTH_API_ADDRESSS
               value: 'auth-service.default:3000'
-
-          resources:
-            limits:
-              memory: '128Mi'
-              cpu: '500m'
-            requests:
-              memory: '64Mi'
-              cpu: '250m'
-          
+          volumeMounts:
+            - name: efs-vol
+              mountPath: /app/users # Dockerfile에서 설정한 path에서 /users 추가
+      volumes:
+        - name: efs-vol
+          persistentVolumeClaim: # EFS PVC yaml로 생성 필요함
+            claimName: efs-pvc 

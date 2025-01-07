@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: StorageClass
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem # EFS only supports Filesystem
+  accessModes:
+    - ReadWriteMany # 다수의 pod에서 읽기 쓰기 가능 <-> ReadWriteOnce
+  storageClassName: efs-sc # EFS StorageClass -> yaml로 StorageClass 생성 필요함
+  csi: # EFS CSI Driver
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0a4b3b3b # AWS EFS File System ID
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc
+  resources:
+    requests:
+      storage: 5Gi
+
+      

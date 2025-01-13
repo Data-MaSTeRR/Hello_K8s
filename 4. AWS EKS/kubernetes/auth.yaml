@@ -30,8 +30,7 @@ spec:
           image: datamasterr/kub-dep-auth
           env:
             - name: TOKEN_KEY
-              value: 'shouldbeverysecure'
-          
+              value: 'shouldbeverysecure'       
           resources:
             limits:
               memory: '128Mi'
